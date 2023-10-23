@@ -45,6 +45,7 @@ export class AimTrainerComponent {
     this.showResultScreen = false
     this.timer = 3;
     this.clickOnTarget = 30;
+    this.timeToFinish = 0
   }
 
   targetClick(){
