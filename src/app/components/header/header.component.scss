@@ -1,0 +1,29 @@
+header{
+  width: 100%;
+  height: 15vh;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1{
+    font-size: 6em;
+    margin: 0 .2em;
+    color: #fff;
+    -webkit-text-stroke: #66BC45 2px;
+  }
+}
+
+.img-box{
+  width: 10%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img{
+    width: 8em;
+  }
+
+}

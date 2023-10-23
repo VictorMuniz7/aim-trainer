@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="pre-start" *ngIf="showPreStart">
+    <h3 class="instruction">Select training and aiming options and when ready, click on start button.</h3>
+    <div class="start-box">
+      <img src="./assets/aim2.png" alt="Aim start" (click)="start()">
+      <p>Start</p>
+    </div>
+  </div>
+
+  <div class="timer" *ngIf="showTimer">
+    <p>{{ timer }}</p>
+  </div>
+
+  <div class="start-game" *ngIf="startGame">
+    <div class="target"  (click)="targetClick()" [style.left]="leftPosition" [style.top]="topPosition" #target>
+      <img src="./assets/aim2.png" alt="Target" draggable="false">
+    </div>
+    <p class="remaining">Remaining targets = {{clickOnTarget}}</p>
+  </div>
+
+  <div class="result-screen" *ngIf="showResultScreen">
+    <div class="result">
+      <p>Average time per target</p>
+      <h3>{{ timeToFinish / 30 | number: '3.0-0'}}ms</h3>
+    </div>
+
+    <button (click)="tryAgain()">Try again</button>
+  </div>
+</div>
+
+<div class="low-width-warn">
+  <p>This test is designed for desktop or laptop users. (Or, enlarge your browser window)"</p>
+</div>
