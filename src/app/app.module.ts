@@ -6,7 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { AimTrainerComponent } from './components/aim-trainer/aim-trainer.component';
 import { OptionsComponent } from './components/options/options.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

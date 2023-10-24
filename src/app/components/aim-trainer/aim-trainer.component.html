@@ -1,8 +1,8 @@
 <div class="container">
   <div class="pre-start" *ngIf="showPreStart">
     <h3 class="instruction">Select training and aiming options and when ready, click on start button.</h3>
-    <div class="start-box">
-      <img src="./assets/aim2.png" alt="Aim start" (click)="start()">
+    <div class="start-box" >
+      <img src="./assets/aim2.png" alt="Aim start" (click)="startTimer()">
       <p>Start</p>
     </div>
   </div>
@@ -12,7 +12,7 @@
   </div>
 
   <div class="start-game" *ngIf="startGame">
-    <div class="target"  (click)="targetClick()" [style.left]="leftPosition" [style.top]="topPosition" #target>
+    <div class="target" (click)="targetClickPrecision()" [style.width]="targetSizeName" [style.height]="targetSizeName" [style.left]="leftPosition" [style.top]="topPosition" #target>
       <img src="./assets/aim2.png" alt="Target" draggable="false">
     </div>
     <p class="remaining">Remaining targets = {{clickOnTarget}}</p>

@@ -1,5 +1,5 @@
 header{
-  width: 100%;
+  width: 100vw;
   height: 15vh;
   background-color: #000;
   display: flex;
@@ -7,8 +7,8 @@ header{
   align-items: center;
 
   h1{
-    font-size: 6em;
-    margin: 0 .2em;
+    font-size: 3em;
+    margin: 0 .4em;
     color: #fff;
     -webkit-text-stroke: #66BC45 2px;
   }
@@ -23,7 +23,30 @@ header{
   align-items: center;
 
   img{
-    width: 8em;
+    width: 5em;
+    border-radius: 50%;
   }
 
+}
+
+
+@media screen and (min-width: 56em) {
+
+  header{
+
+    h1{
+      font-size: 6em;
+      margin: 0 .3em;
+    }
+
+  .img-box{
+
+    img{
+      width: 8em;
+    }
+
+  }
+
+
+}
 }
