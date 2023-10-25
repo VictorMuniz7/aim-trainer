@@ -15,7 +15,7 @@
   }
 }
 
-@media screen and (min-width: 56em) {
+@media screen and (min-width: 62.5em) {
 
   .low-width-warn{
     display: none;
@@ -24,12 +24,12 @@
   .container{
     display: block;
     width: 100%;
-    height: 75vh;
+    height: 70vh;
     background-color: #000;
   }
 
   .pre-start, .timer, .start-game, .result-screen{
-    width: 100%;
+    width: 80vw;
     height: 100%;
   }
 
@@ -89,7 +89,6 @@
     align-items: center;
     width: 6em;
     height: 6em;
-    background-color: aliceblue;
     border-radius: 50%;
     position: absolute;
     user-select: none;
@@ -103,10 +102,11 @@
   .remaining{
     width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
     text-align: center;
     font-size: 1.5em;
     color: #5fe929;
+    user-select: none;
   }
 
   .result-screen{
@@ -151,5 +151,24 @@
       font-size: 4em;
       margin: .5em 0;
     }
+  }
+}
+
+.moving-target{
+  animation: moveAnimation 2s ease-in-out infinite;
+}
+
+@keyframes moveAnimation {
+
+  0%{
+    transform: translateX(-2.5em);
+  }
+
+  50%{
+    transform: translateX(2.5em);
+  }
+
+  100%{
+    transform: translateX(-2.5em);
   }
 }

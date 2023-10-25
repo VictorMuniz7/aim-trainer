@@ -1,11 +1,12 @@
 <div class="container">
+  <div class="blocked" *ngIf="(isGameRunning$ | async)"></div>
   <form [formGroup]="form" (change)="setConfiguration()">
     <div class="gamemode-selection">
       <h2>Select a gamemode</h2>
 
       <div class="gamemode style-radio">
-        <p class="info info-precision" *ngIf="showPrecisionModeInfo">In this gamemode, you need to hit 30 targets in the least time possible, you can see in the result how many time you spent between a target hit.</p>
-        <input type="radio" name="gamemode" id="precision" value="precision" formControlName="gamemode" >
+        <p class="info info-precision" *ngIf="showPrecisionModeInfo">In this gamemode, you need to hit 30 targets in the least time possible, you can see in the results how many time you spent between a target hit.</p>
+        <input type="radio" name="gamemode" id="precision" value="precision" formControlName="gamemode">
         <label for="precision"><span><i class="fa-solid fa-crosshairs"></i></span> Precision speed</label>
         <button (mouseenter)="showPrecisionModeInfo = true" (mouseleave)="showPrecisionModeInfo = false">?</button>
       </div>
@@ -42,7 +43,7 @@
     </div>
 
     <div class="moving-target-selection">
-      <h2>Enabled moving target</h2>
+      <h2>Enable moving target</h2>
       <div class="input-box large-input-box style-radio">
         <input type="checkbox" id="moving" formControlName="moving">
         <label for="moving"><span><i class="fa-solid fa-crosshairs"></i></span> Enable</label>

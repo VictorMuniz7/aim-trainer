@@ -1,0 +1,16 @@
+footer{
+  width: 100vw;
+  height: 9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(35,37,35);
+  background: linear-gradient(115deg, rgba(35,37,35,1) 17%, rgba(0,0,0,1) 31%, rgba(35,36,35,1) 49%, rgba(2,11,3,1) 70%, rgba(38,40,38,1) 84%);
+
+  a{
+    margin: 0 1em;
+    color: #fff;
+    font-size: 4em;
+    text-decoration: none;
+  }
+}

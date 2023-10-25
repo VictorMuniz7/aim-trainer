@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { OptionService } from 'src/app/services/option.service';
 
 @Component({
@@ -7,6 +7,12 @@ import { OptionService } from 'src/app/services/option.service';
   styleUrls: ['./aim-trainer.component.scss']
 })
 export class AimTrainerComponent {
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any): void {
+    const confirmationMessage = 'Are you sure?';
+    $event.returnValue = confirmationMessage;
+  }
 
   //screens
   showPreStart: boolean = true;
@@ -18,16 +24,18 @@ export class AimTrainerComponent {
   timer: number  = 3;
 
   //first target generation
-  leftPosition: string = `${Math.floor(Math.random() * 80)}%`;
-  topPosition: string = `${Math.floor(Math.random() * 80)}%`;
+  leftPosition: string = `${Math.floor(Math.random() * 76)}%`;
+  topPosition: string = `${Math.floor(Math.random() * 76)}%`;
 
-  //fast clicks gamemode configs
-  precisionInterval: any
-  timeToFinish: number = 0
+  //precision gamemode configs
+  precisionInterval: any;
+  timeToFinish: number = 0;
   clickOnTarget: number = 30;
 
-  //time clicks gamemode configs
+  //rapid fire gamemode configs
   points: number = 0;
+  rapidFireInterval: any;
+  remainingTime: number = 15;
 
   targetSizeMap: { [key: string]: string } = {
     'greater': '8em',
@@ -36,8 +44,13 @@ export class AimTrainerComponent {
     'all': 'all'
   };
 
-  targetSizeName: string = ''
-  targetSize: string = ''
+  targetSizeName: string = '';
+  targetSize: string = '';
+
+  isRunning: boolean = false;
+  currentGamemode: string = '';
+
+  movingTargets: boolean = false;
 
   constructor(
     private optionService: OptionService
@@ -47,8 +60,13 @@ export class AimTrainerComponent {
     this.optionService.data$.subscribe((data) => {
       this.targetSizeName = this.targetSizeMap[data.targetSize]
       this.targetSize = data.targetSize
-      if(data.gamemode === 'precision'){
-        this.startPrecisionGamemode(data.targetSize, data.moving)
+      this.currentGamemode = data.gamemode
+      this.movingTargets = data.moving
+      if(data.gamemode === 'precision' && this.isRunning === true){
+        this.startPrecisionGamemode()
+      }
+      if(data.gamemode === 'rapid' && this.isRunning === true){
+        this.startRapidFireGamemode()
       }
     })
   }
@@ -56,6 +74,9 @@ export class AimTrainerComponent {
   startTimer(){
     this.showPreStart = false;
     this.showTimer = true;
+    this.optionService.setGameRunning(true)
+    this.isRunning = true
+
     let timerInterval = setInterval(() => {
       this.timer--
     }, 1000)
@@ -72,6 +93,10 @@ export class AimTrainerComponent {
     this.timer = 3;
     this.clickOnTarget = 30;
     this.timeToFinish = 0
+    this.optionService.setGameRunning(false)
+    this.isRunning = false
+    this.remainingTime = 15
+    this.points = 0
   }
 
   changePosition(){
@@ -94,11 +119,26 @@ export class AimTrainerComponent {
     this.changePosition()
   }
 
-  startPrecisionGamemode(targetSize: string, moving: boolean){
+  targetClickRapidFire(){
+    this.points++
+    this.changePosition()
+  }
+
+  startPrecisionGamemode(){
     this.startGame = true
     this.precisionInterval = setInterval(() => {
       this.timeToFinish += 10;
     }, 10)
+  }
 
+  startRapidFireGamemode(){
+    this.startGame = true
+    this.rapidFireInterval = setInterval(() => {
+      if(this.remainingTime === 0){
+        this.showResultScreen = true
+        this.startGame = false
+      }
+      this.remainingTime--
+    }, 1000)
   }
 }

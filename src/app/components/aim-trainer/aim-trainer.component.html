@@ -1,6 +1,6 @@
 <div class="container">
   <div class="pre-start" *ngIf="showPreStart">
-    <h3 class="instruction">Select training and aiming options and when ready, click on start button.</h3>
+    <h3 class="instruction">Select gamemode and target options and, when ready, click on start button.</h3>
     <div class="start-box" >
       <img src="./assets/aim2.png" alt="Aim start" (click)="startTimer()">
       <p>Start</p>
@@ -12,16 +12,16 @@
   </div>
 
   <div class="start-game" *ngIf="startGame">
-    <div class="target" (click)="targetClickPrecision()" [style.width]="targetSizeName" [style.height]="targetSizeName" [style.left]="leftPosition" [style.top]="topPosition" #target>
+    <div [classList]="movingTargets ? 'target moving-target' : 'target'" (click)="currentGamemode === 'precision' ? targetClickPrecision() : targetClickRapidFire()" [style.width]="targetSizeName" [style.height]="targetSizeName" [style.left]="leftPosition" [style.top]="topPosition" #target>
       <img src="./assets/aim2.png" alt="Target" draggable="false">
     </div>
-    <p class="remaining">Remaining targets = {{clickOnTarget}}</p>
+    <p class="remaining">{{currentGamemode === 'precision' ? 'Remaining targets: ' + clickOnTarget : 'Remaining time: ' + remainingTime}}</p>
   </div>
 
   <div class="result-screen" *ngIf="showResultScreen">
     <div class="result">
-      <p>Average time per target</p>
-      <h3>{{ timeToFinish / 30 | number: '3.0-0'}}ms</h3>
+      <p>{{ currentGamemode === 'precision' ? 'Average time per target' : 'Total hits in 15 seconds'}}</p>
+      <h3>{{ currentGamemode === 'precision' ? (timeToFinish / 30 | number: '3.0-0') + 'ms' : points + ' hits'}}</h3>
     </div>
 
     <button (click)="tryAgain()">Try again</button>

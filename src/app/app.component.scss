@@ -1,6 +1,23 @@
 .back{
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3em;
+  background: rgb(255,255,255);
+  background: linear-gradient(210deg, rgba(255,255,255,1) 17%, rgba(237,237,237,1) 40%, rgba(227,227,227,1) 82%);
+  position: relative;
+  overflow-x: scroll;
+}
+
+app-footer{
+  position: absolute;
+  bottom: 0;
+}
+
+@media screen and (min-width: 62.5em) {
+
+  .back{
+    height: 140vh;
+  }
 }

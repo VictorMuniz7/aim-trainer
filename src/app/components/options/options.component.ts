@@ -12,6 +12,8 @@ export class OptionsComponent implements OnInit{
   showPrecisionModeInfo: boolean = false
   showRapidModeInfo: boolean = false
 
+  isGameRunning$ = this.optionService.isGameRunning$;
+
   form = this.formBuilder.group({
     gamemode: 'precision',
     targetSize: 'normal',
