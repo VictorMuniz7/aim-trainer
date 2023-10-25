@@ -7,12 +7,16 @@
   background: rgb(255,255,255);
   background: linear-gradient(210deg, rgba(255,255,255,1) 17%, rgba(237,237,237,1) 40%, rgba(227,227,227,1) 82%);
   position: relative;
-  overflow-x: scroll;
+  overflow: hidden;
 }
 
 app-footer{
   position: absolute;
   bottom: 0;
+}
+
+app-footer, app-header{
+  overflow: hidden;
 }
 
 @media screen and (min-width: 62.5em) {
