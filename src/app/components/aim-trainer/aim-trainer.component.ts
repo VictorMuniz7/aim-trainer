@@ -103,7 +103,7 @@ export class AimTrainerComponent {
     if(this.targetSize === 'all'){
       this.targetSizeName = `${Math.floor(Math.random() * (5 + 1) + 3)}em`
     }
-    this.leftPosition = `${Math.floor(Math.random() * 80)}%`
+    this.leftPosition = `${Math.floor(Math.random() * (80 - 10 + 1) )+ 10}%`
     this.topPosition = `${Math.floor(Math.random() * 80)}%`
   }
 
@@ -135,6 +135,7 @@ export class AimTrainerComponent {
     this.startGame = true
     this.rapidFireInterval = setInterval(() => {
       if(this.remainingTime === 0){
+        clearInterval(this.rapidFireInterval)
         this.showResultScreen = true
         this.startGame = false
       }
